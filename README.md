@@ -60,7 +60,47 @@ Creating the application’s front-end using React
       cd frontend
       npm start
 
+3.  Then Follows the App.js in (src folder)
+
+4.  Using the Axios API: - 
+    the Axios API will be used here to make requests to the backend
+        npm install axios
+        
+5.  To style the app, we will install and use the React-Bootstrap framework using the npm package.
+        npm install react-bootstrap bootstrap@5.1.3
+        
+6.  This bootstrap framework requires a stylesheet for some components. Therefore, include this line of code in your src/index.js or App.js file
+        import 'bootstrap/dist/css/bootstrap.min.css';
+        
+7.  We will separate the Axios configuration logic in a separate component file and just import it into our application component which we will name        AddMovie.js. This is always a cleaner, readable and simple way of implementing the Axios API and our code in general. Therefore, create a file named      API.js within the src directory and add this code.
+
+        import axios from 'axios';
+
+        export default axios.create({
+            baseURL: "http://127.0.0.1:8000/backend_api/movies",    # This is drf url 
+            headers: {
+                'Accept':'application/json',
+                'Content-Type':'application/json',
+            }
+        }
    
-   
-   
-   
+8.  Do not forget to import the AddMovie.js component to the App.js file. This is the only way it can be rendered to the browser.
+
+        import './App.css';
+        import AddMovie from './AddMovie'
+
+        function App() {
+
+          return (
+            <div className="App">
+              <AddMovie/>           #this line
+
+            </div>
+          );
+        }
+
+        export default App;
+        
+10. Don't forgot to add fontawasome link to delete and update operation to the AddMovies.js into head.
+                    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+
